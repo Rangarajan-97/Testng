@@ -7,6 +7,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -23,7 +25,7 @@ public class LoginPage {
 		 System.setProperty("webdriver.chrome.driver", "//Users//ranga//Downloads//chromedriver");
 		 wd = new ChromeDriver();
 		 wd.manage().window().maximize();
-		 wd.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		 wd.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
          wd.get("https://app.gohighlevel.com/");
   		}
 	
@@ -34,7 +36,6 @@ public class LoginPage {
 		 wd.findElement(By.xpath("//input[@id='email']")).sendKeys(username);
 		 wd.findElement(By.xpath("//input[@id='password']")).sendKeys(password);
 		 wd.findElement(By.xpath("//button[contains(text(),'Sign in')]")).click();
-		 Thread.sleep(5);
 }
 	
 	
@@ -54,17 +55,14 @@ public class LoginPage {
 	
     @Test()
 	public void CreateNewCalendar() throws InterruptedException {
-    	
-    	WebElement ele = wd.findElement(By.xpath("//span[contains(text(),'calendar_test')]/following::span[contains(text(),'New Calendar')]"));
-		Actions action = new Actions(wd);
-		action.moveToElement(ele);
-		action.click().build().perform();
-		Thread.sleep(10);
+    	WebDriverWait some_element = new WebDriverWait(wd,100); 
+    	some_element.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[contains(text(),'calendar_test')]/following::span[contains(text(),'New Calendar')]")));
+    			
 
 	}
 
 	
-    //@AfterClass
+   // @AfterClass
 	//public void quit() {
 	//	wd.close();
 	//}
