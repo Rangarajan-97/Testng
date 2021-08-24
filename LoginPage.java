@@ -26,7 +26,7 @@ public class LoginPage {
 		}
 	
 	
-	@Test// To login gohighlevel
+	@Test // To login go high level
 	public void Login_page() {
 		 wd.findElement(By.xpath("//input[@id='email']")).sendKeys(username);
 		 wd.findElement(By.xpath("//input[@id='password']")).sendKeys(password);
@@ -35,14 +35,19 @@ public class LoginPage {
 		 
 	}
 	
-	@Test()
+	@Test() //Navigating to settings Page
 	public void Setting_Page() throws InterruptedException {
 		 wd.findElement(By.xpath("//span[contains(text(),'Settings')]")).click();
 		 wd.findElement(By.xpath("//li/a[contains(text(),'Calendars')]")).click();
-		 Thread.sleep(20);
+		 Thread.sleep(5);
+  }
 	
+	@Test()
+	public void CreateNewCalendar() throws InterruptedException {
+		wd.findElement(By.xpath("//span[contains(text(),'calendar_test')]/following::span[contains(text(),'New Calendar')]")).click();
+		 Thread.sleep(10);
+
 	}
-	
 
 	//@AfterClass
 	//public void quit() {
