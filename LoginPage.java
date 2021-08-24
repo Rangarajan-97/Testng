@@ -21,8 +21,10 @@ public class LoginPage {
 		 System.setProperty("webdriver.chrome.driver", "//Users//ranga//Downloads//chromedriver");
 		 wd = new ChromeDriver();
 		 wd.manage().window().maximize();
-		 wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+		 wd.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
          wd.get("https://app.gohighlevel.com/");
+        String Title= wd.getTitle();
+        System.out.println(Title);
 		}
 	
 	
